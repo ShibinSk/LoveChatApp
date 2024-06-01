@@ -10,7 +10,7 @@ import { createAdapter, setupPrimary } from '@socket.io/cluster-adapter';
 import dotenv from 'dotenv';
 import path from 'path'
 dotenv.config()
-console.log('Load test');
+console.log(process.env.MONGO_DB, 'Load test');
 if (cluster.isPrimary) {
   const numCPUs = availableParallelism();
   for (let i = 0; i < numCPUs; i++) {
