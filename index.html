@@ -218,52 +218,11 @@
     </div>
        
     </div>
-<script src="/socket.io/socket.io.js"></script>
+<!-- <script src="/socket.io/socket.io.js"></script> -->
+<!-- Include Socket.IO library from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.min.js"></script>
+
 <script>
-
-  const showModal=()=>{
-    document.getElementById("myDropdown").classList.toggle("show");
-    // alert('super')
-  }
-  document.getElementById("clearChat").addEventListener("click", function(event) {
-            event.preventDefault();
-            clearChat();
-        });
-
-        function clearChat() {
-            fetch('http://localhost:3000/clearChat', {
-                method: 'POST', // or 'POST' based on your backend requirements
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ userId: '' }) // Include any necessary data
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload()
-                    // Additional logic to update the UI after clearing the chat
-                } else {
-                    alert("Failed to clear chat!");
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.matches('.fa-ellipsis-vertical')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-
 
     let counter = 0;
 
@@ -303,6 +262,53 @@
     socket.on('connect', () => {
       socket.auth.serverOffset = 0;
     });
+
+
+    const showModal=()=>{
+    document.getElementById("myDropdown").classList.toggle("show");
+    // alert('super')
+  }
+  document.getElementById("clearChat").addEventListener("click", function(event) {
+            event.preventDefault();
+            clearChat();
+        });
+
+        function clearChat() {
+            fetch('https://chat-with-gf.netlify.app/clearChat', {
+                method: 'POST', // or 'POST' based on your backend requirements
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userId: '' }) // Include any necessary data
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    location.reload()
+                    // Additional logic to update the UI after clearing the chat
+                } else {
+                    alert("Failed to clear chat!");
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        window.onclick = function(event) {
+          
+          if (!event.target.matches('.fa-ellipsis-vertical')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+
+
   </script>
 
 </div>
