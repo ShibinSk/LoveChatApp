@@ -4,11 +4,15 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
-import { availableParallelism } from 'node:os';
+// import { availableParallelism } from 'node:os';
 import cluster from 'node:cluster';
 import { createAdapter, setupPrimary } from '@socket.io/cluster-adapter';
 import dotenv from 'dotenv';
 import path from 'path'
+import { cpus } from 'os';
+
+const availableParallelism = () => cpus().length;
+
 dotenv.config()
 console.log(process.env.MONGO_DB, 'Load test');
 if (cluster.isPrimary) {
