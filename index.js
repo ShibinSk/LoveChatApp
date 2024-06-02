@@ -25,7 +25,7 @@ if (cluster.isPrimary) {
 
   setupPrimary();
 } else {
-  await mongoose.connect(process.env.MONGO_DB?? 'mongodb://localhost:27017/chatdb').then(()=>{
+  await mongoose.connect(process.env.MONGO_DB).then(()=>{
     console.log('Data base connected' );
   });
 
